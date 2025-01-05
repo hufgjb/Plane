@@ -19,7 +19,10 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Instantiate(ExplosionPrefab, transform.position, transform.rotation); //在子彈碰撞的位置產生爆炸
-        Destroy(gameObject); //刪除子彈物件，一定要先有爆炸動畫，再刪除
+        if (collision.tag != "Wall") //如果碰撞的標籤不是Wall(的以外物件)
+        {
+            Instantiate(ExplosionPrefab, transform.position, transform.rotation); //在子彈碰撞的位置產生爆炸
+        }
+        Destroy(gameObject); //刪除子彈物件
     }
 }
